@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logística y Publicidad Lito's</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html"><img src="img/logo.png" alt="Logo de Logística y Publicidad Lito's" height="70px"></a>
+        </div>
+        <nav>
+           <ul class="nav-links">
+                <li><a href="servPublicidad.html">Servicios de publicidad</a></li>
+                <li><a href="bolsatrabajo.html">Bolsa de Trabajo</a></li>
+                <li><a href="reclutamiento.html">Reclutamiento de Personal</a></li>
+                <li><a href="mensajeria.html">Mensajería y Paquetería</a></li>
+                <li><a href="contacto.html">Contáctanos</a></li>
+           </ul>            
+        </nav>
+    </header>
+    <section id="contacto">
+        <div class="contact-container">
+            <div class="contact-form">
+                <h3>Contáctanos</h3>
+                <form action="procesar_formulario.php" method="post">
+                    <label for="nombre">Nombre o Empresa:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+    
+                    <label for="correo">Correo Electrónico:</label>
+                    <input type="email" id="correo" name="correo" required>
+    
+                    <label for="telefono">Número de Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" required>
+    
+                    <label for="interes">¿Qué servicio te interesa?</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="publicidad" name="servicio[]" value="Servicios de Publicidad">
+                        <label for="publicidad">Servicios de Publicidad</label><br>
+                        <input type="checkbox" id="mensajeria" name="servicio[]" value="Mensajería y Paquetería">
+                        <label for="mensajeria">Mensajería y Paquetería</label>
+                    </div>
+    
+                    <input type="submit" value="Enviar">
+                </form>
+            </div>
+    
+            <!-- Imagen separadora -->
+            <div class="separador">
+                <img src="img/barra.png">
+            </div>
+    
+            <!-- Datos de Contacto -->
+            <div class="contact-info">
+                <h3>Datos de Contacto</h3>
+                <p><strong>Teléfono o WhatsApp:</strong> <br> 686-510-3828 <br> 686-178-8484</p>
+                <p><strong>Correo Electrónico:</strong> <br> 
+                    <a href="mailto:k.cortina@hotmail.com">k.cortina@hotmail.com</a> <br> 
+                    <a href="mailto:adolfo.herdezm@gmail.com">adolfo.herdezm@gmail.com</a>
+                </p>
+                <p><strong>Facebook:</strong> <br> 
+                    <a href="https://www.facebook.com/share/nBQNeRuKVczUTNsV/" target="_blank">Visítanos en Facebook</a>
+                </p>
+            </div>
+        </div>
+        
+    </section>
+    <footer>
+        <p>Contacta con nosotros al <strong>(686-510-3828)</strong> o visítanos en nuestras redes sociales.</p>
+    </footer>
+</body>
+</html>
