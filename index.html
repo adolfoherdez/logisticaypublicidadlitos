@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logística y Publicidad Lito's</title>
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
 </head>
 <body>
@@ -22,6 +22,16 @@
            </ul>            
         </nav>
     </header>
+
+    <section id="registro">
+        <h1>Regístrate</h1>
+        <form onsubmit="event.preventDefault(); registrarUsuario();">
+            <input type="text" id="name" placeholder="Nombre" required />
+            <input type="text" id="address" placeholder="Correo electrónico" required />
+            <input type="password" id="password" placeholder="Contraseña" required />
+            <button type="submit">Registrar</button>
+        </form>
+    </section>
 
     <main>
         <section id="publicidad">
@@ -79,26 +89,14 @@
             <div class="contact-container">
                 <div class="contact-form">
                     <h3>Contáctanos</h3>
-                    <form action="procesar_formulario.php" method="post">
-                        <label for="nombre">Nombre o Empresa:</label>
-                        <input type="text" id="nombre" name="nombre" required>
-        
-                        <label for="correo">Correo Electrónico:</label>
-                        <input type="email" id="correo" name="correo" required>
-        
-                        <label for="telefono">Número de Teléfono:</label>
-                        <input type="tel" id="telefono" name="telefono" required>
-        
-                        <label for="interes">¿Qué servicio te interesa?</label>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="publicidad" name="servicio[]" value="Servicios de Publicidad">
-                            <label for="publicidad">Servicios de Publicidad</label><br>
-                            <input type="checkbox" id="mensajeria" name="servicio[]" value="Mensajería y Paquetería">
-                            <label for="mensajeria">Mensajería y Paquetería</label>
-                        </div>
-        
-                        <input type="submit" value="Enviar">
+                    <form onsubmit="event.preventDefault(); enviarContacto();">
+                        <input type="text" id="nombre" placeholder="Nombre" required />
+                        <input type="email" id="correo" placeholder="Correo" required />
+                        <input type="text" id="telefono" placeholder="Teléfono" required />
+                        <input type="text" id="servicio" placeholder="Servicio" required />
+                        <button type="submit">Enviar</button>
                     </form>
+                    
                 </div>
         
                 <!-- Imagen separadora -->
@@ -123,6 +121,47 @@
         </section>
     </main>
 
+    <script>
+        async function enviarContacto() {
+            const nombre = document.getElementById("nombre").value;
+            const correo = document.getElementById("correo").value;
+            const telefono = document.getElementById("telefono").value;
+            const servicio = document.getElementById("servicio").value;
+
+            const response = await fetch("http://localhost:3000/registro", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ nombre, correo, telefono, servicio }),
+            });
+
+            const data = await response.json();
+            alert(data.message || data.error);
+        }
+
+        async function registrarUsuario() {
+            const name = document.getElementById("name").value;
+            const address = document.getElementById("address").value;
+            const password = document.getElementById("password").value;
+
+            const response = await fetch("http://localhost:3000/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ name, address, password }),
+            });
+
+            const data = await response.json();
+            alert(data.message || data.error);
+        }
+    </script>
+
+    <div class="mapa">
+        <h2>Ubicación</h2>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d408.35388260578134!2d-115.37119974081737!3d32.565445223280165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80d775d3bdda89bb%3A0x9c14203bc278e5ce!2sAv.%20Xochitl%C3%A1n%203901%2C%20Valle%20de%20Puebla%2C%2021395%20Mexicali%2C%20B.C.!5e0!3m2!1ses-419!2smx!4v1729189587972!5m2!1ses-419!2smx" width="1200" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
     <footer>
         <p>Contacta con nosotros al <strong>(686-510-3828)</strong> o visítanos en nuestras redes sociales.</p>
     </footer>
